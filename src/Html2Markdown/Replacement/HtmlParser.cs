@@ -197,7 +197,7 @@ namespace Html2Markdown.Replacement
 			return MarkdownNode(markdown).OuterHtml;
 		}
 
-		public static string ReplaceBody(HtmlNode node)
+		public static string RemoveTagLeaveChildren(HtmlNode node)
 		{
 			var body = node.InnerHtml;
 			return MarkdownNode(body).OuterHtml;
