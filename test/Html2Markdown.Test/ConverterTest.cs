@@ -575,7 +575,7 @@ var result = converter.Convert(html);
 			const string expected = @"This code is with an unordered list.
 
 1.  Yes
-2.  No";
+1.  No";
 
 			CheckConversion(html, expected);
 		}
@@ -600,7 +600,7 @@ var result = converter.Convert(html);
 			const string expected = @"This code is with an unordered list.
 
 1.  Yes
-2.  *   No
+1.  *   No
     *   Maybe";
 
 			CheckConversion(html, expected);
