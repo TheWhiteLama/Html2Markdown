@@ -780,7 +780,7 @@ a comment
 			CheckConversion(html, expected);
 		}
 
-	[Test]
+		[Test]
 		public void ConvertFile_WhenReadingInHtmlFile_ThenConvertToMarkdown()
 		{
 			var sourcePath = _testPath + "TestHtml.txt";
