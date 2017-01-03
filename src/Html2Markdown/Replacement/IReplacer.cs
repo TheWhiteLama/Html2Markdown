@@ -1,7 +1,9 @@
+﻿using HtmlAgilityPack;
+
 namespace Html2Markdown.Replacement
 {
 	internal interface IReplacer
 	{
-		string Replace(string html);
+		string Replace(HtmlNode element);
 	}
 }
