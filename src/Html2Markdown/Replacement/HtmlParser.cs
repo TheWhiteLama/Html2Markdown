@@ -204,9 +204,27 @@ namespace Html2Markdown.Replacement
 				});
 
 			return doc.DocumentNode.OuterHtml;
-		}
+        }
 
-		private static bool IsEmptyLink(string linkText, string href)
+        public static string KeepParagraph(string html) {
+            var doc = GetHtmlDocument(html);
+            var nodes = doc.DocumentNode.SelectNodes("//p");
+            if (nodes == null)
+                return html;
+
+            nodes.ToList().ForEach(node =>
+            {
+                var text = node.InnerHtml;
+                var markdown = Regex.Replace(text, @"\s+", " ");
+                markdown = markdown.Replace(Environment.NewLine, " ");
+                markdown = "<p>" + markdown + "</p>";
+                ReplaceNode(node, markdown);
+            });
+
+            return doc.DocumentNode.OuterHtml;
+        }
+
+        private static bool IsEmptyLink(string linkText, string href)
 		{
 			var length = linkText.Length + href.Length;
 			return length == 0;

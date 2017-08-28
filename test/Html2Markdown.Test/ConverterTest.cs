@@ -982,7 +982,37 @@ If you want to play with this application you can fork or browse it on [GitHub](
 			CheckConversion(html, expected);
 		}
 
-		private static void CheckFileConversion(string path, string expected)
+        [Test]
+        public void Convert_ComplexTest_002_with_ignore_list() {
+            const string html = @"<p>Some other HTML</p>
+
+<ul>
+    <li>Bach</li>
+    <li>Vivaldi</li>
+    <li>Mozart</li>
+</ul>
+
+<blockquote>
+<p class=""right"" align=""right""><em>“Qualquer coisa que possas fazer ou sonhar, podes começá-la. A ousadia encerra em si mesma genialidade, poder e magia.<br />Ouse fazer, e o poder lhe será dado!”</em><br /><strong>— Johann Wolfgang von Goethe</strong></p>
+</blockquote>";
+
+            const string expected = @"<p>Some other HTML</p>
+
+> <p>*“Qualquer coisa que possas fazer ou sonhar, podes começá-la. A ousadia encerra em si mesma genialidade, poder e magia.
+> Ouse fazer, e o poder lhe será dado!”*
+> **— Johann Wolfgang von Goethe**</p>";
+
+            var converter = new Converter();
+            converter.KeepShortP = true;
+            converter.KeepShortBr = true;
+            converter.KeepShortUlLi = true;
+
+            var result = converter.Convert(html);
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        private static void CheckFileConversion(string path, string expected)
 		{
 			var converter = new Converter();
 
