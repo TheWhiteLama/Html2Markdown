@@ -95,22 +95,24 @@ namespace Html2Markdown {
                 new CustomReplacer {
                     CustomAction = HtmlParser.ReplaceImg
                 },
-                new CustomReplacer {
-                    CustomAction = HtmlParser.ReplaceAnchor
-                },
-                new CustomReplacer {
-                    CustomAction = HtmlParser.ReplaceCode
-                },
-                new CustomReplacer {
-                    CustomAction = HtmlParser.ReplacePre
-                },
-                new CustomReplacer {
-                    CustomAction = HtmlParser.ReplaceBlockquote
-                },
-                new CustomReplacer {
-                    CustomAction = HtmlParser.ReplaceEntites
-                }
             };
+
+            if (KeepShortUlLi) {
+            } else {
+                _replacers.Add(new CustomReplacer {
+                    CustomAction = HtmlParser.ReplaceLists
+                });
+            }
+
+            _replacers.Add(new CustomReplacer {
+                CustomAction = HtmlParser.ReplaceAnchor
+            });
+            _replacers.Add(new CustomReplacer {
+                CustomAction = HtmlParser.ReplaceCode
+            });
+            _replacers.Add(new CustomReplacer {
+                CustomAction = HtmlParser.ReplacePre
+            });
 
             if (KeepShortP) {
                 _replacers.Add(new CustomReplacer {
@@ -125,7 +127,7 @@ namespace Html2Markdown {
             if (KeepShortBr) {
                 _replacers.Add(new PatternReplacer {
                     Pattern = @"<br[^>]*>",
-                    Replacement = @"<br \>"
+                    Replacement = @"<br>"
                 });
             } else {
                 _replacers.Add(new PatternReplacer {
@@ -134,12 +136,13 @@ namespace Html2Markdown {
                 });
             }
 
-            if (KeepShortUlLi) {
-            } else {
-                _replacers.Add(new CustomReplacer {
-                    CustomAction = HtmlParser.ReplaceLists
-                });
-            }
+            _replacers.Add(new CustomReplacer {
+                CustomAction = HtmlParser.ReplaceBlockquote
+            });
+
+            _replacers.Add(new CustomReplacer {
+                CustomAction = HtmlParser.ReplaceEntites
+            });
         }
 
         /// <summary>

@@ -998,9 +998,13 @@ If you want to play with this application you can fork or browse it on [GitHub](
 
             const string expected = @"<p>Some other HTML</p>
 
-> <p>*“Qualquer coisa que possas fazer ou sonhar, podes começá-la. A ousadia encerra em si mesma genialidade, poder e magia.
-> Ouse fazer, e o poder lhe será dado!”*
-> **— Johann Wolfgang von Goethe**</p>";
+<ul>
+    <li>Bach</li>
+    <li>Vivaldi</li>
+    <li>Mozart</li>
+</ul>
+
+> <p>*“Qualquer coisa que possas fazer ou sonhar, podes começá-la. A ousadia encerra em si mesma genialidade, poder e magia.<br>Ouse fazer, e o poder lhe será dado!”*<br>**— Johann Wolfgang von Goethe**</p>";
 
             var converter = new Converter();
             converter.KeepShortP = true;
